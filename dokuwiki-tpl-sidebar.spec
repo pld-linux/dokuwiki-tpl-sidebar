@@ -1,6 +1,7 @@
 %define		_snap	2007-03-12
 %define		_ver	%(echo %{_snap} | tr -d -)
 Summary:	Sidebar navigation with DokuWiki
+Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
 Version:	%{_ver}
 Release:	0.1
@@ -15,14 +16,21 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_dokudir	/usr/share/dokuwiki
-%define		_tpldir		%{_dokudir}/lib/tpl/%{_tpl}
 %define		_tpl		sidebar
+%define		_tpldir		%{_dokudir}/lib/tpl/%{_tpl}
 
 %description
 Better navigation with DokuWiki. Features a navigation sidebar, a
 tagline, highlighting the current page in the sidebar (unique
 feature!), using the page heading as link text automatically. Retains
-the default dokuwiki look and feel as much as possible.
+the default DokuWiki look and feel as much as possible.
+
+%description -l pl.UTF-8
+Lepsza nawigacja przy użyciu DokuWiki. Opiera się na sidebarze
+nawigacyjnym, pasku podświetlającym aktualną stronę na sidebarze
+(co jest unikalną cechą!), przy automatycznym użyciu nagłówka strony
+jako tekstu odnośnika. Zachowuje domyślny wygląd i zachowanie DokuWiki
+na ile to możliwe.
 
 %prep
 %setup -q -n %{_tpl}
