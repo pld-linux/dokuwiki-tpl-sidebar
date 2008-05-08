@@ -1,6 +1,6 @@
 %define		_snap	2007-03-12
 %define		_ver	%(echo %{_snap} | tr -d -)
-%define		_tpl	sidebar
+%define		tpl	sidebar
 Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
@@ -16,8 +16,8 @@ Requires:	dokuwiki >= 20061106
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_dokudir	/usr/share/dokuwiki
-%define		_tpldir		%{_dokudir}/lib/tpl/%{_tpl}
+%define		dokudir		/usr/share/dokuwiki
+%define		tpldir		%{dokudir}/lib/tpl/%{tpl}
 
 %description
 Better navigation with DokuWiki. Features a navigation sidebar, a
@@ -33,11 +33,11 @@ jako tekstu odnośnika. Zachowuje domyślny wygląd i zachowanie DokuWiki
 na ile to możliwe.
 
 %prep
-%setup -q -n %{_tpl}
+%setup -q -n %{tpl}
 
 cat > INSTALL <<'EOF'
 To activate this template add the following to your conf/local.php file:
-$conf['template']    = '%{_tpl}';
+$conf['template']    = '%{tpl}';
 
 If you want a tagline, you can define it as follows:
 $conf['tagline']    = 'Your own tagline';
@@ -45,9 +45,9 @@ EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_tpldir}
-cp -a . $RPM_BUILD_ROOT%{_tpldir}
-rm -f $RPM_BUILD_ROOT%{_tpldir}/INSTALL
+install -d $RPM_BUILD_ROOT%{tpldir}
+cp -a . $RPM_BUILD_ROOT%{tpldir}
+rm -f $RPM_BUILD_ROOT%{tpldir}/INSTALL
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,4 +55,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc INSTALL
-%{_tpldir}
+%{tpldir}
