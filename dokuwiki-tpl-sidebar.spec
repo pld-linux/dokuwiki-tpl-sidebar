@@ -5,7 +5,7 @@ Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://www.jandecaluwe.com/testwiki/lib/exe/fetch.php/navigation:sidebar-%{_snap}.tar.gz
