@@ -16,6 +16,7 @@ Requires:	dokuwiki >= 20090126
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_sysconfdir	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		tpldir		%{dokudir}/lib/tpl/%{tpl}
 
@@ -51,6 +52,12 @@ rm -f $RPM_BUILD_ROOT%{tpldir}/INSTALL
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+# force cache refresh
+if [ -f %{_sysconfdir}/local.php ]; then
+	touch %{_sysconfdir}/local.php
+fi
 
 %files
 %defattr(644,root,root,755)
