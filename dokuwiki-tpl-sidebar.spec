@@ -54,7 +54,7 @@ rm -f $RPM_BUILD_ROOT%{tpldir}/INSTALL
 rm -rf $RPM_BUILD_ROOT
 
 %post
-# force cache refresh
+# force css cache refresh
 if [ -f %{dokuconf}/local.php ]; then
 	touch %{dokuconf}/local.php
 fi
