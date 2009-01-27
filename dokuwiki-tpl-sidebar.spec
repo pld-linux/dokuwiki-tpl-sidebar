@@ -1,18 +1,18 @@
-%define		_snap	2007-03-12
-%define		_ver	%(echo %{_snap} | tr -d -)
+%define		snap	2009-01-26
+%define		ver	%(echo %{snap} | tr -d -)
 %define		tpl	sidebar
 Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
-Version:	%{_ver}
+Version:	%{ver}
 Release:	1
 License:	GPL
 Group:		Applications/WWW
-Source0:	http://www.jandecaluwe.com/testwiki/lib/exe/fetch.php/navigation:sidebar-%{_snap}.tar.gz
-# Source0-md5:	297db12e6a4fd2a745f4eb20ced0b09b
-URL:		http://www.jandecaluwe.com/testwiki/doku.php/navigation:intro
+Source0:	http://dokuwiki.jalakai.co.uk/template-sidebar-rc%{snap}.zip
+# Source0-md5:	7a36b63e86d00f72eecae2ba80334fdd
+URL:		http://wiki.jalakai.co.uk/dokuwiki/
 BuildRequires:	rpmbuild(macros) >= 1.268
-Requires:	dokuwiki >= 20061106
+Requires:	dokuwiki >= 20090126
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,10 +27,10 @@ the default DokuWiki look and feel as much as possible.
 
 %description -l pl.UTF-8
 Lepsza nawigacja przy użyciu DokuWiki. Opiera się na sidebarze
-nawigacyjnym, pasku podświetlającym aktualną stronę na sidebarze
-(co jest unikalną cechą!), przy automatycznym użyciu nagłówka strony
-jako tekstu odnośnika. Zachowuje domyślny wygląd i zachowanie DokuWiki
-na ile to możliwe.
+nawigacyjnym, pasku podświetlającym aktualną stronę na sidebarze (co
+jest unikalną cechą!), przy automatycznym użyciu nagłówka strony jako
+tekstu odnośnika. Zachowuje domyślny wygląd i zachowanie DokuWiki na
+ile to możliwe.
 
 %prep
 %setup -q -n %{tpl}
