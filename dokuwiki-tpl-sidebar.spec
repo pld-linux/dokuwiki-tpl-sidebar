@@ -10,6 +10,7 @@ License:	GPL
 Group:		Applications/WWW
 Source0:	http://dokuwiki.jalakai.co.uk/template-sidebar-rc%{snap}.zip
 # Source0-md5:	7a36b63e86d00f72eecae2ba80334fdd
+Patch0:		backlink-rightside.patch
 URL:		http://wiki.jalakai.co.uk/dokuwiki/
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	dokuwiki >= 20090126
@@ -35,6 +36,7 @@ ile to możliwe.
 
 %prep
 %setup -q -n %{tpl}
+%patch0 -p1
 
 cat > INSTALL <<'EOF'
 To activate this template add the following to your conf/local.php file:
