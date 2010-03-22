@@ -5,13 +5,14 @@ Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
 Version:	%{ver}
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dokuwiki.jalakai.co.uk/template-sidebar-rc%{snap}.zip
 # Source0-md5:	7a36b63e86d00f72eecae2ba80334fdd
 Patch0:		backlink-rightside.patch
 Patch1:		more-buttons.patch
+Patch2:		acl-check.patch
 URL:		http://www.dokuwiki.org/template:sidebar
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	dokuwiki >= 20090126
@@ -39,9 +40,11 @@ ile to możliwe.
 %setup -q -n %{tpl}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 cat > INSTALL <<'EOF'
 To activate this template add the following to your conf/local.php file:
+
 $conf['template']    = '%{tpl}';
 
 If you want a tagline, you can define it as follows:

@@ -1,0 +1,12 @@
+--- sidebar/tplfn_sidebar.php~	2010-03-22 19:53:07.000000000 +0200
++++ sidebar/tplfn_sidebar.php	2010-03-22 19:54:26.889836553 +0200
+@@ -73,6 +73,9 @@
+     $fileSidebar = getSidebarFN(getNS($ID), tpl_getConf('page'));
+   }
+ 
++  // check user has read permission for the sidebar page
++  if (auth_quickaclcheck($fileSidebar) < AUTH_READ) return;
++
+   // determine what to display
+   if ($fileSidebar) {
+     $ID = $fileSidebar;
