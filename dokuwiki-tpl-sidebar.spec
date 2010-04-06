@@ -15,6 +15,7 @@ Patch1:		more-buttons.patch
 Patch2:		acl-check.patch
 URL:		http://www.dokuwiki.org/template:sidebar
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	unzip
 Requires:	dokuwiki >= 20090126
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
