@@ -1,0 +1,786 @@
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_admin.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_admin.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_admin.css	1970-01-01 02:00:00.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_admin.css	2010-10-07 11:08:14.000000000 +0300
+@@ -0,0 +1,48 @@
++#admin__version {
++    clear:left;
++    float: right;
++    color: __text_neu__;
++}
++
++.dokuwiki ul.admin_tasks {
++    font-size: 115%;
++    float: left;
++    width: 40%;
++    list-style-type: none;
++}
++
++.dokuwiki ul.admin_tasks li {
++    line-height: 22px;
++    padding-left: 35px;
++    margin: 1em 0;
++    background: transparent none no-repeat scroll 0 0;
++    text-align: left;
++}
++
++.dokuwiki ul.admin_tasks li div.li {
++    font-weight: bold;
++}
++
++.dokuwiki ul.admin_tasks li.admin_acl {
++    background-image: url(../../images/admin/acl.png);
++}
++
++.dokuwiki ul.admin_tasks li.admin_usermanager {
++    background-image: url(../../images/admin/usermanager.png);
++}
++
++.dokuwiki ul.admin_tasks li.admin_plugin {
++    background-image: url(../../images/admin/plugin.png);
++}
++
++.dokuwiki ul.admin_tasks li.admin_config {
++    background-image: url(../../images/admin/config.png);
++}
++
++.dokuwiki ul.admin_tasks li.admin_revert {
++    background-image: url(../../images/admin/revert.png);
++}
++
++.dokuwiki ul.admin_tasks li.admin_popularity {
++    background-image: url(../../images/admin/popularity.png);
++}
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/design.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/design.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/design.css	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/design.css	2010-10-07 11:08:14.000000000 +0300
+@@ -91,7 +91,10 @@
+   background-color: __background__;
+   border: 1px solid __border__;
+   padding: 0.3em 0 0 0.3em;
+-  width: 100%;
++  /* should just be "width: 100%", but IE8 doesn't like it, see FS#1910 + FS#1667 */
++  width: 700px;
++  min-width: 100%;
++  max-width: 100%;
+ }
+ 
+ /* nice alphatransparency background except for IE <7 */
+@@ -137,6 +140,7 @@
+ div.dokuwiki textarea.edit[readonly],
+ div.dokuwiki input.edit[disabled],
+ div.dokuwiki input.edit[readonly],
++div.dokuwiki input.button[disabled],
+ div.dokuwiki select.edit[disabled] {
+   background-color: __background_neu__!important;
+   color: __text_neu__!important;
+@@ -404,11 +408,11 @@
+ div.dokuwiki h5 {font-size: 100%; margin-left: 80px; border-bottom: none; font-weight: bold;}
+ 
+ /* indent different sections */
+-div.dokuwiki div.level1 {margin-left: 3px;}
+-div.dokuwiki div.level2 {margin-left: 23px;}
+-div.dokuwiki div.level3 {margin-left: 43px;}
+-div.dokuwiki div.level4 {margin-left: 63px;}
+-div.dokuwiki div.level5 {margin-left: 83px;}
++div.dokuwiki div.level1 { margin-left: 3px; }
++div.dokuwiki div.level2 { margin-left: 23px; }
++div.dokuwiki div.level3 { margin-left: 43px; }
++div.dokuwiki div.level4 { margin-left: 63px; }
++div.dokuwiki div.level5 { margin-left: 83px; }
+ 
+ /* unordered lists */
+ div.dokuwiki ul {
+@@ -428,12 +432,10 @@
+   font-weight: bold;
+ }
+ 
+-/* no gap in between nested lists */
+-div.dokuwiki li ul {
+-  margin-bottom: 0;
+-}
++/* no bottom gap in between and smaller left margin for nested lists */
++div.dokuwiki li ul,
+ div.dokuwiki li ol {
+-  margin-bottom: 0;
++  margin: 0 0 0 1.5em;
+ }
+ 
+ /* the list items overriding the ul/ol definition */
+@@ -442,10 +444,10 @@
+   font-weight: normal;
+ }
+ 
+-div.dokuwiki ol {list-style-type: decimal}
+-div.dokuwiki ol ol {list-style-type: upper-roman}
+-div.dokuwiki ol ol ol {list-style-type: lower-alpha}
+-div.dokuwiki ol ol ol ol {list-style-type: lower-greek}
++div.dokuwiki ol { list-style-type: decimal; }
++div.dokuwiki ol ol { list-style-type: upper-roman; }
++div.dokuwiki ol ol ol { list-style-type: lower-alpha; }
++div.dokuwiki ol ol ol ol { list-style-type: lower-greek; }
+ 
+ div.dokuwiki li.open {
+   list-style-image: url(images/open.gif);
+@@ -463,6 +465,7 @@
+ }
+ 
+ div.dokuwiki pre {
++  font-family: monospace;
+   font-size: 120%;
+   padding: 0.5em;
+   border: 1px dashed __border__;
+@@ -480,16 +483,47 @@
+   background-color: __background_other__;
+ }
+ 
+-/* inline code words */
+-div.dokuwiki code {
+-  font-size: 120%;
+-}
+-
+ /* code blocks by file tag */
+ div.dokuwiki pre.file {
+   background-color: __background_alt__;
+ }
+ 
++/* filenames for file and code blocks */
++div.dokuwiki dl.file,
++div.dokuwiki dl.code {
++    margin-top: 2em;
++    margin-bottom: 2.5em;
++}
++
++div.dokuwiki dl.file dt,
++div.dokuwiki dl.code dt {
++    border: 1px dashed __border__;
++    display: inline;
++    padding: 0.1em 1em;
++    margin-left: 2em;
++}
++
++div.dokuwiki dl.code dt a,
++div.dokuwiki dl.file dt a {
++    color: __text__;
++}
++
++div.dokuwiki dl.code dt {
++    background-color: __background_other__;
++    border-bottom: 1px solid __background_other__;
++}
++
++div.dokuwiki dl.file dt {
++    background-color: __background_alt__;
++    border-bottom: 1px solid __background_alt__;
++}
++
++
++/* inline code words */
++div.dokuwiki code {
++  font-size: 120%;
++}
++
+ /* inline tables */
+ div.dokuwiki table.inline {
+   background-color: __background__;
+@@ -658,6 +692,7 @@
+   text-align: left;
+   padding: 4px;
+   max-width: 40%;    /* IE's width is handled in javascript */
++  min-width: 5em;
+ }
+ 
+ /* overcome IE issue with one line code or file boxes which require h. scrolling */
+@@ -707,10 +742,14 @@
+ 
+ div.dokuwiki ul.search_quickhits li {
+   margin: 0 1.0em 0 1.0em;
+-  float:left;
++  float: left;
+   width: 30%;
+ }
+ 
++div.dokuwiki .section_highlight {
++  background-color: __background_alt__ !important;
++}
++
+ /* ------------------ Additional ---------------------- */
+ 
+ div.footerinc {
+@@ -761,6 +800,10 @@
+   background-color: __background_alt__;
+ }
+ 
++div.pk_hl {
++  width: 125px;
++}
++
+ button.pickerbutton {
+   padding: 0px;
+   margin: 0 1px 1px 0;
+@@ -792,6 +835,7 @@
+ }
+ 
+ div.dokuwiki div.imagemeta img.thumb {
+-  float:left;
++  float: left;
+   margin-right: 0.1em;
+ }
++
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/detail.php ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/detail.php
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/detail.php	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/detail.php	2010-10-07 11:08:14.000000000 +0300
+@@ -53,7 +53,7 @@
+       <dl class="img_tags">
+         <?php
+           $t = tpl_img_getTag('Date.EarliestTime');
+-          if($t) print '<dt>'.$lang['img_date'].':</dt><dd>'.strftime($conf['dformat'],$t).'</dd>';
++          if($t) print '<dt>'.$lang['img_date'].':</dt><dd>'.dformat($t).'</dd>';
+ 
+           $t = tpl_img_getTag('File.Name');
+           if($t) print '<dt>'.$lang['img_fname'].':</dt><dd>'.hsc($t).'</dd>';
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/footer.html ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/footer.html
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/footer.html	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/footer.html	2010-10-12 19:01:18.902554928 +0300
+@@ -28,6 +28,8 @@
+ 
+   <a <?php echo $tgt?> href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS"><img src="<?php echo DOKU_TPL; ?>images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+ 
++  <a <?php echo $tgt?> href="http://www.pld-linux.org/" title="PLD Linux"><img src="<?php echo DOKU_TPL; ?>images/button-pld.png" width="80" height="15" alt="PLD Linux" /></a>
++
+   <a <?php echo $tgt?> href="http://dokuwiki.org/" title="Driven by DokuWiki"><img src="<?php echo DOKU_TPL; ?>images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+ 
+ <?php
+Files ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/images/button-php.gif and ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/images/button-php.gif differ
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/layout.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/layout.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/layout.css	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/layout.css	2010-10-07 11:08:14.000000000 +0300
+@@ -58,7 +58,7 @@
+ }
+ 
+ div.dokuwiki #bar__bottom {
+-  margin-bottom:3px;
++  margin-bottom: 3px;
+ }
+ 
+ /* ------------- File Metadata ----------------------- */
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_linkwiz.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css	1970-01-01 02:00:00.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_linkwiz.css	2010-10-07 11:08:14.000000000 +0300
+@@ -0,0 +1,68 @@
++#link__wiz {
++    position: absolute;
++    display: block;
++    z-index: 99;
++    width:   300px;
++    height:  250px;
++    padding: 0;
++    margin:  0;
++    overflow: hidden;
++    border: 1px solid __border__;
++    background-color: __background_neu__;
++    text-align: center;
++}
++
++#link__wiz_header {
++    background-color: __background_alt__;
++    height: 16px;
++    margin-bottom: 5px;
++}
++
++#link__wiz_close {
++    cursor: pointer;
++    margin: 0;
++}
++
++#link__wiz_result {
++    background-color: __background__;
++    width:  293px;
++    height: 193px;
++    overflow: auto;
++    border: 1px solid __border__;
++    margin: 3px auto;
++    text-align: left;
++}
++
++#link__wiz_result div.type_u {
++    padding: 3px 3px 3px 22px;
++    background: transparent url(../../images/up.png) 3px 3px no-repeat;
++}
++
++#link__wiz_result div.type_f {
++    padding: 3px 3px 3px 22px;
++    background: transparent url(../../images/page.png) 3px 3px no-repeat;
++}
++
++#link__wiz_result div.type_d {
++    padding: 3px 3px 3px 22px;
++    background: transparent url(../../images/ns.png) 3px 3px no-repeat;
++}
++
++#link__wiz_result div.even {
++    background-color: __background_neu__;
++}
++
++#link__wiz_result div.selected {
++    background-color: __background_alt__;
++}
++
++#link__wiz_result span {
++    display: block;
++    color: __text_neu__;
++}
++
++/*FIXME maybe move to a more general style sheet*/
++.ondrag {
++    cursor: move;
++    opacity: 0.8;
++}
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/main.php ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/main.php
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/main.php	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/main.php	2010-10-07 11:08:14.000000000 +0300
+@@ -82,7 +82,7 @@
+     <?php }?>
+ 
+   </div>
+-  <?php flush()?>
++  <?php tpl_flush()?>
+ 
+   <?php /*old includehook*/ @include(dirname(__FILE__).'/pageheader.html')?>
+ 
+@@ -94,7 +94,7 @@
+ 
+   <div class="clearer">&nbsp;</div>
+ 
+-  <?php flush()?>
++  <?php tpl_flush()?>
+ 
+   <div class="stylefoot">
+ 
+@@ -113,10 +113,10 @@
+       <div class="bar-left" id="bar__bottomleft">
+         <?php tpl_button('edit')?>
+         <?php tpl_button('history')?>
++        <?php tpl_button('revert')?>
+       </div>
+       <div class="bar-right" id="bar__bottomright">
+         <?php tpl_button('subscribe')?>
+-        <?php tpl_button('subscribens')?>
+         <?php tpl_button('admin')?>
+         <?php tpl_button('profile')?>
+         <?php tpl_button('login')?>
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/media.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/media.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/media.css	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/media.css	2010-10-07 11:08:14.000000000 +0300
+@@ -35,7 +35,7 @@
+ /* --- Tree formatting --- */
+ 
+ #media__tree img {
+-    float:left;
++    float: left;
+     padding: 0.5em 0.3em 0 0;
+ }
+ 
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_mediaoptions.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css	1970-01-01 02:00:00.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_mediaoptions.css	2010-10-07 11:08:14.000000000 +0300
+@@ -0,0 +1,92 @@
++/* --- popup --- */
++
++#media__popup {
++    background-color:__background__;
++    display:none;
++    border: 1px solid __border__;
++    position: absolute;
++    width:270px;
++}
++
++#media__popup h1 {
++    text-align:center;
++    font-weight:normal;
++    background-color: __background_alt__;
++    height: 16px;
++    margin-bottom: 5px;
++    font-size:12px;
++    border-bottom: 0;
++}
++
++#media__popup p {
++    display:block;
++    line-height:14pt;
++    margin:0.5em;
++}
++
++#media_nolink {
++    padding:4px 0;
++}
++
++#media__popup label {
++    float:left;
++    width:9em;
++}
++
++#media__popup .button {
++    margin-left:auto;
++    margin-right:auto;
++}
++
++#media__popup .btnlbl {
++    text-align:center;
++}
++
++#media__popup .btnlbl input {
++    margin:0 1em;
++}
++
++#media__closeimg {
++    float:right;
++}
++
++/* --- display options --- */
++
++#media__linkopts label,
++#media__nolnk {
++	width: 80px;
++	float: left;
++	margin-left: 10px;
++}
++
++#media__linkopts label{
++	line-height: 20px;
++}
++
++#media__nolnk,
++#media__linkopts label.long{
++	margin-bottom: 8px;
++	line-height: 12px;
++}
++
++#media__linkopts label.long{
++	width: 150px;
++	float: none;
++}
++
++#media__linkopts br {
++	clear: both;
++}
++
++#media__linkopts select {
++	width: 60px;
++	margin-left: 10px;
++}
++
++#media__linkopts input.edit {
++    width:50px;
++    margin-left:10px;
++}
++#media__linkopts #media__title {
++    width:150px;
++}
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/print.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/print.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/print.css	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/print.css	2010-10-07 11:08:14.000000000 +0300
+@@ -7,26 +7,30 @@
+ 
+ table {
+   font-size: 100%;
+-  padding:0;
+-  margin:0;
++  padding: 0;
++  margin: 0;
+ }
+ 
+-tr,td,th {padding:0; margin:0;}
++tr,td,th { padding: 0; margin: 0; }
+ 
+-img {border:0}
++img { border: 0; }
+ 
+ a {
+-  color:#000000;
+-  text-decoration:none;
++  color: #000000;
++  text-decoration: none;
+   background: none !important;
+ }
+ 
++a.interwiki {
++  padding-left: 0px !important;
++}
++
+ 
+ div.meta {
+-  clear:both;
++  clear: both;
+   margin-top: 1em;
+-  font-size:70%;
+-  text-align:right;
++  font-size: 70%;
++  text-align: right;
+ }
+ 
+ 
+@@ -36,7 +40,7 @@
+ div.error,
+ div.breadcrumbs,
+ div.secedit {
+-  display:none;
++  display: none;
+ }
+ 
+ /* --------------------- Text formating -------------------------------- */
+@@ -60,7 +64,7 @@
+ }
+ 
+ /* existing wikilink */
+-a.wikilink1    {text-decoration:underline }
++a.wikilink1    { text-decoration: underline; }
+ 
+ /* the document */
+ div.page {
+@@ -83,15 +87,15 @@
+     padding-top:    0.5em;
+     padding-bottom: 0;
+     border-bottom: 1px solid #000000;
+-    clear:left;
++    clear: left;
+ }
+ 
+ /* special headlines */
+-h1 {font-size: 160%; font-weight: bold;}
+-h2 {font-size: 150%; }
+-h3 {font-size: 140%; border-bottom: none; }
+-h4 {font-size: 120%; border-bottom: none; }
+-h5 {font-size: 100%; border-bottom: none; }
++h1 { font-size: 160%; font-weight: bold; }
++h2 { font-size: 150%; }
++h3 { font-size: 140%; border-bottom: none; }
++h4 { font-size: 120%; border-bottom: none; }
++h5 { font-size: 100%; border-bottom: none; }
+ 
+ /* embedded images */
+ img.media {
+@@ -133,16 +137,20 @@
+   margin-bottom: 0;
+ }
+ 
+-div.dokuwiki ol {list-style-type: decimal}
+-div.dokuwiki ol ol {list-style-type: upper-roman}
+-div.dokuwiki ol ol ol {list-style-type: lower-alpha}
+-div.dokuwiki ol ol ol ol {list-style-type: lower-greek}
++div.dokuwiki ol { list-style-type: decimal; }
++div.dokuwiki ol ol { list-style-type: upper-roman; }
++div.dokuwiki ol ol ol { list-style-type: lower-alpha; }
++div.dokuwiki ol ol ol ol { list-style-type: lower-greek; }
+ 
+ /* the list items overriding the ol definition */
+ span.li {
+     font-weight: normal;
+ }
+ 
++pre {
++  font-family: monospace;
++}
++
+ /* code blocks by indention */
+ pre.pre {
+   font-size: 8pt;
+@@ -176,29 +184,29 @@
+ }
+ 
+ /* footnotes */
+-div.footnotes{
+-  clear:both;
++div.footnotes {
++  clear: both;
+   border-top: 1px solid #000000;
+   padding-left: 1em;
+   margin-top: 1em;
+ }
+ 
+-div.fn{
+-  font-size:90%;
++div.fn {
++  font-size: 90%;
+ }
+ 
+-a.fn_top{
+-  vertical-align:super;
+-  font-size:80%;
++a.fn_top {
++  vertical-align: super;
++  font-size: 80%;
+ }
+ 
+-a.fn_bot{
+-  vertical-align:super;
+-  font-size:80%;
+-  font-weight:bold;
++a.fn_bot {
++  vertical-align: super;
++  font-size: 80%;
++  font-weight: bold;
+ }
+ 
+-acronym{
++acronym {
+   border: 0;
+ }
+ 
+@@ -222,17 +230,17 @@
+   border: 1px solid #000000;
+ }
+ 
+-.leftalign{
++.leftalign {
+   text-align: left;
+ }
+ 
+-.centeralign{
++.centeralign {
+   text-align: center;
+ }
+ 
+-.rightalign{
++.rightalign {
+   text-align: right;
+ }
+ 
+-.toc, .footerinc, .header, .bar, .user {display:none}
++.toc, .footerinc, .header, .bar, .user { display: none; }
+ 
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/rtl.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/rtl.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/rtl.css	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/rtl.css	2010-10-07 11:08:14.000000000 +0300
+@@ -34,7 +34,7 @@
+ }
+ 
+ div.meta div.user {
+-  float: right
++  float: right;
+ }
+ 
+ div.meta div.doc {
+@@ -45,6 +45,10 @@
+ 
+ div.dokuwiki ul,
+ div.dokuwiki ol {
++  margin: 0.5em 3.5em 0.5em 0;
++}
++div.dokuwiki li ul,
++div.dokuwiki li ol {
+   margin: 0.5em 1.5em 0.5em 0;
+ }
+ 
+@@ -72,18 +76,18 @@
+ }
+ 
+ /* special headlines */
+-div.dokuwiki h1 {margin-left: 0px; margin-right: 0px;}
+-div.dokuwiki h2 {margin-left: 0px; margin-right: 20px;}
+-div.dokuwiki h3 {margin-left: 0px; margin-right: 40px;}
+-div.dokuwiki h4 {margin-left: 0px; margin-right: 60px;}
+-div.dokuwiki h5 {margin-left: 0px; margin-right: 80px;}
++div.dokuwiki h1 { margin-left: 0px; margin-right: 0px; }
++div.dokuwiki h2 { margin-left: 0px; margin-right: 20px; }
++div.dokuwiki h3 { margin-left: 0px; margin-right: 40px; }
++div.dokuwiki h4 { margin-left: 0px; margin-right: 60px; }
++div.dokuwiki h5 { margin-left: 0px; margin-right: 80px; }
+ 
+ /* indent different sections */
+-div.dokuwiki div.level1 {margin-left: 0px; margin-right: 3px;}
+-div.dokuwiki div.level2 {margin-left: 0px; margin-right: 23px;}
+-div.dokuwiki div.level3 {margin-left: 0px; margin-right: 43px;}
+-div.dokuwiki div.level4 {margin-left: 0px; margin-right: 63px;}
+-div.dokuwiki div.level5 {margin-left: 0px; margin-right: 83px;}
++div.dokuwiki div.level1 { margin-left: 0px; margin-right: 3px; }
++div.dokuwiki div.level2 { margin-left: 0px; margin-right: 23px; }
++div.dokuwiki div.level3 { margin-left: 0px; margin-right: 43px; }
++div.dokuwiki div.level4 { margin-left: 0px; margin-right: 63px; }
++div.dokuwiki div.level5 { margin-left: 0px; margin-right: 83px; }
+ 
+ /* TOC control */
+ div.dokuwiki div.toc {
+@@ -105,15 +109,39 @@
+ 
+ div.dokuwiki ul.toc li {
+   background-position: right 0.6em;
+-  padding-right:0.4em;
++  padding-right: 0.4em;
+   direction: rtl;
+ }
+ 
+ div.dokuwiki ul.toc li.clear {
+-  padding-right:0.4em;
++  padding-right: 0.4em;
+ }
+ 
+-div.dokuwiki pre {
++div.dokuwiki .code {
++  direction: ltr;
+   text-align: left;
+ }
++div.dokuwiki blockquote {
++  border-left: 0;
++  padding-left: 0;
++  border-right: 2px solid  __border__;
++  padding-right: 3px;
++}
++
++/* Admin corrections */
++#admin__version {
++    clear: right;
++    float: left;
++}
++
++.dokuwiki ul.admin_tasks {
++    float: right;
++}
++
++.dokuwiki ul.admin_tasks li {
++    padding-left: 0px;
++    padding-right: 35px;
++    background: transparent none no-repeat scroll right 0;
++    text-align: right;
++}
+ 
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/style.ini ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/style.ini
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/style.ini	2009-02-14 14:13:25.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/style.ini	2010-10-07 11:08:14.000000000 +0300
+@@ -10,7 +10,11 @@
+ design.css     = screen
+ style.css      = screen
+ 
+-media.css      = screen
++media.css         = screen
++_mediaoptions.css = screen
++_admin.css        = screen
++_linkwiz.css      = screen
++_subscription.css = screen
+ 
+ rtl.css        = rtl
+ print.css      = print
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_subscription.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_subscription.css
+--- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_subscription.css	1970-01-01 02:00:00.000000000 +0200
++++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_subscription.css	2010-10-07 11:08:14.000000000 +0300
+@@ -0,0 +1,21 @@
++/**
++ * Styles for the subscription page
++ */
++
++form#subscribe__form {
++    display: block;
++    width: 300px;
++    text-align: center;
++}
++
++form#subscribe__form fieldset {
++    text-align: left;
++    margin: 0.5em 0;
++}
++
++form#subscribe__form label {
++    display:block;
++    margin: 0 0.5em 0.5em;
++}
++
++
