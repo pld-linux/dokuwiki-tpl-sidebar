@@ -1,6 +1,6 @@
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_admin.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_admin.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_admin.css	1970-01-01 02:00:00.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_admin.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/_admin.css dokuwiki-2010-11-07/lib/tpl/default/_admin.css
+--- dokuwiki-2009-02-14/lib/tpl/default/_admin.css	1970-01-01 02:00:00.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/_admin.css	2010-11-07 18:43:04.000000000 +0200
 @@ -0,0 +1,48 @@
 +#admin__version {
 +    clear:left;
@@ -50,9 +50,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
 +.dokuwiki ul.admin_tasks li.admin_popularity {
 +    background-image: url(../../images/admin/popularity.png);
 +}
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/design.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/design.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/design.css	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/design.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/design.css dokuwiki-2010-11-07/lib/tpl/default/design.css
+--- dokuwiki-2009-02-14/lib/tpl/default/design.css	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/design.css	2010-11-07 18:43:04.000000000 +0200
 @@ -91,7 +91,10 @@
    background-color: __background__;
    border: 1px solid __border__;
@@ -226,9 +226,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
    margin-right: 0.1em;
  }
 +
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/detail.php ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/detail.php
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/detail.php	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/detail.php	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/detail.php dokuwiki-2010-11-07/lib/tpl/default/detail.php
+--- dokuwiki-2009-02-14/lib/tpl/default/detail.php	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/detail.php	2010-11-07 18:43:04.000000000 +0200
 @@ -53,7 +53,7 @@
        <dl class="img_tags">
          <?php
@@ -238,10 +238,10 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
  
            $t = tpl_img_getTag('File.Name');
            if($t) print '<dt>'.$lang['img_fname'].':</dt><dd>'.hsc($t).'</dd>';
-Files ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/images/button-php.gif and ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/images/button-php.gif differ
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/layout.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/layout.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/layout.css	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/layout.css	2010-10-07 11:08:14.000000000 +0300
+Files dokuwiki-2009-02-14/lib/tpl/default/images/button-php.gif and dokuwiki-2010-11-07/lib/tpl/default/images/button-php.gif differ
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/layout.css dokuwiki-2010-11-07/lib/tpl/default/layout.css
+--- dokuwiki-2009-02-14/lib/tpl/default/layout.css	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/layout.css	2010-11-07 18:43:04.000000000 +0200
 @@ -58,7 +58,7 @@
  }
  
@@ -251,9 +251,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
  }
  
  /* ------------- File Metadata ----------------------- */
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_linkwiz.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css	1970-01-01 02:00:00.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_linkwiz.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css dokuwiki-2010-11-07/lib/tpl/default/_linkwiz.css
+--- dokuwiki-2009-02-14/lib/tpl/default/_linkwiz.css	1970-01-01 02:00:00.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/_linkwiz.css	2010-11-07 18:43:04.000000000 +0200
 @@ -0,0 +1,68 @@
 +#link__wiz {
 +    position: absolute;
@@ -323,9 +323,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
 +    cursor: move;
 +    opacity: 0.8;
 +}
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/main.php ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/main.php
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/main.php	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/main.php	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/main.php dokuwiki-2010-11-07/lib/tpl/default/main.php
+--- dokuwiki-2009-02-14/lib/tpl/default/main.php	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/main.php	2010-11-07 18:43:04.000000000 +0200
 @@ -82,7 +82,7 @@
      <?php }?>
  
@@ -356,9 +356,16 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
          <?php tpl_button('admin')?>
          <?php tpl_button('profile')?>
          <?php tpl_button('login')?>
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/media.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/media.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/media.css	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/media.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/media.css dokuwiki-2010-11-07/lib/tpl/default/media.css
+--- dokuwiki-2009-02-14/lib/tpl/default/media.css	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/media.css	2010-11-07 18:43:04.000000000 +0200
+@@ -1,5 +1,5 @@
+ /**
+- * The CSS in here cotrols the appearance of the media manager
++ * The CSS in here controls the appearance of the media manager
+  */
+ 
+ #media__manager {
 @@ -35,7 +35,7 @@
  /* --- Tree formatting --- */
  
@@ -368,9 +375,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
      padding: 0.5em 0.3em 0 0;
  }
  
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_mediaoptions.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css	1970-01-01 02:00:00.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_mediaoptions.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css dokuwiki-2010-11-07/lib/tpl/default/_mediaoptions.css
+--- dokuwiki-2009-02-14/lib/tpl/default/_mediaoptions.css	1970-01-01 02:00:00.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/_mediaoptions.css	2010-11-07 18:43:04.000000000 +0200
 @@ -0,0 +1,92 @@
 +/* --- popup --- */
 +
@@ -464,9 +471,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
 +#media__linkopts #media__title {
 +    width:150px;
 +}
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/print.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/print.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/print.css	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/print.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/print.css dokuwiki-2010-11-07/lib/tpl/default/print.css
+--- dokuwiki-2009-02-14/lib/tpl/default/print.css	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/print.css	2010-11-07 18:43:04.000000000 +0200
 @@ -7,26 +7,30 @@
  
  table {
@@ -636,9 +643,16 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
 -.toc, .footerinc, .header, .bar, .user {display:none}
 +.toc, .footerinc, .header, .bar, .user { display: none; }
  
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/rtl.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/rtl.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/rtl.css	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/rtl.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/rtl.css dokuwiki-2010-11-07/lib/tpl/default/rtl.css
+--- dokuwiki-2009-02-14/lib/tpl/default/rtl.css	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/rtl.css	2010-11-07 18:43:04.000000000 +0200
+@@ -1,5 +1,5 @@
+ /**
+- * Layout and dedsign corrections for right-to-left languages
++ * Layout and design corrections for right-to-left languages
+  *
+  * @author Andreas Gohr <andi@splitbrain.org>
+  * @author Dotan Kamber <kamberd@yahoo.com>
 @@ -34,7 +34,7 @@
  }
  
@@ -688,7 +702,7 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
  
  /* TOC control */
  div.dokuwiki div.toc {
-@@ -105,15 +109,39 @@
+@@ -105,15 +109,47 @@
  
  div.dokuwiki ul.toc li {
    background-position: right 0.6em;
@@ -731,9 +745,17 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
 +    text-align: right;
 +}
  
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/style.ini ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/style.ini
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/style.ini	2009-02-14 14:13:25.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/style.ini	2010-10-07 11:08:14.000000000 +0300
++/* Search corrections */
++div.dokuwiki ul.search_quickhits li {
++    float: right;
++}
++
++div#qsearch__out {
++    text-align: right;
++}
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/style.ini dokuwiki-2010-11-07/lib/tpl/default/style.ini
+--- dokuwiki-2009-02-14/lib/tpl/default/style.ini	2009-02-14 14:13:25.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/style.ini	2010-11-07 18:43:04.000000000 +0200
 @@ -10,7 +10,11 @@
  design.css     = screen
  style.css      = screen
@@ -747,9 +769,9 @@ diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tp
  
  rtl.css        = rtl
  print.css      = print
-diff -ur -x .svn -x .git -x .bzr -x CVS -Nur ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_subscription.css ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_subscription.css
---- ../BUILD/dokuwiki-2009-02-14/lib/tpl/default/_subscription.css	1970-01-01 02:00:00.000000000 +0200
-+++ ../BUILD/dokuwiki-rc2010-10-07/lib/tpl/default/_subscription.css	2010-10-07 11:08:14.000000000 +0300
+diff -ur -x .svn -x .git -x .bzr -x CVS -Nur dokuwiki-2009-02-14/lib/tpl/default/_subscription.css dokuwiki-2010-11-07/lib/tpl/default/_subscription.css
+--- dokuwiki-2009-02-14/lib/tpl/default/_subscription.css	1970-01-01 02:00:00.000000000 +0200
++++ dokuwiki-2010-11-07/lib/tpl/default/_subscription.css	2010-11-07 18:43:04.000000000 +0200
 @@ -0,0 +1,21 @@
 +/**
 + * Styles for the subscription page
