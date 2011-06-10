@@ -2,8 +2,8 @@
 Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
-Version:	20101007
-Release:	2
+Version:	20110525
+Release:	1
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dokuwiki.jalakai.co.uk/template-sidebar-rc2009-01-26.zip
@@ -12,6 +12,7 @@ Patch0:		backlink-rightside.patch
 Patch1:		more-buttons.patch
 Patch2:		acl-check.patch
 Patch3:		http://glen.alkohol.ee/pld/%{name}-20101007.patch
+Patch4:		dokuwiki-tpl-sidebar-20110525.patch
 URL:		http://www.dokuwiki.org/template:sidebar
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
@@ -39,6 +40,7 @@ ile to możliwe.
 %prep
 %setup -q -n %{tpl}
 %patch3 -p4
+%patch4 -p6
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
