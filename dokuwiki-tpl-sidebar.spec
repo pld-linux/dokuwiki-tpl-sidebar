@@ -76,6 +76,7 @@ images/mail_icon.gif
 images/resizecol.png
 images/tocdot2.gif
 images/windows.gif
+images/button-pld.png
 EOF
 
 %clean
