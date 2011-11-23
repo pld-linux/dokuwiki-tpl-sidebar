@@ -2,7 +2,7 @@
 Summary:	Sidebar navigation with DokuWiki
 Summary(pl.UTF-8):	Nawigacja po sidebarze przy użyciu DokuWiki
 Name:		dokuwiki-tpl-sidebar
-Version:	20110525
+Version:	20111110
 Release:	1
 License:	GPL
 Group:		Applications/WWW
@@ -14,6 +14,7 @@ Patch2:		acl-check.patch
 Patch3:		%{name}-20101007.patch
 Patch4:		dw-20101007.patch
 Patch5:		%{name}-20110525.patch
+Patch6:		%{name}-20111110.patch
 URL:		http://www.dokuwiki.org/template:sidebar
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
@@ -43,6 +44,7 @@ ile to możliwe.
 %patch3 -p4
 %patch4 -p1
 %patch5 -p6
+%patch6 -p4
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -61,6 +63,20 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{tpldir}
 cp -a . $RPM_BUILD_ROOT%{tpldir}
 rm -f $RPM_BUILD_ROOT%{tpldir}/INSTALL
+
+while read file; do
+	ln -sf ../../default/$file $RPM_BUILD_ROOT%{tpldir}/$file
+done <<EOF
+images/UWEB.png
+images/apple-touch-icon.png
+images/button-cc.gif
+images/button-rss.png
+images/link_icon.gif
+images/mail_icon.gif
+images/resizecol.png
+images/tocdot2.gif
+images/windows.gif
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
