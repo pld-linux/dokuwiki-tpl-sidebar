@@ -41,13 +41,13 @@ ile to możliwe.
 
 %prep
 %setup -q -n %{tpl}
-%patch3 -p4
-%patch4 -p1
-%patch5 -p6
-%patch6 -p4
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P3 -p4
+%patch -P4 -p1
+%patch -P5 -p6
+%patch -P6 -p4
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 cat > INSTALL <<'EOF'
 To activate this template add the following to your conf/local.php file:
